@@ -1,0 +1,21 @@
+<p>get-all-admin works!</p>
+<table>
+    <thead>
+        <th>Student Id </th>
+        <th>Student Name</th>
+        <th>Department</th>
+        <th>Course Id</th>
+        <th>Course Name</th>
+        <th>Fee Details</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of allStudentData">
+        <td>{{s.sid}}</td>
+        <td>{{s.sname}}</td>
+        <td>{{s.department}}</td>
+        <td>{{s.course?.cid}}</td>
+        <td>{{s.course?.name}}</td>
+        <td>{{s.course?.fee}}</td>
+    </tr>
+    </tbody>
+</table>

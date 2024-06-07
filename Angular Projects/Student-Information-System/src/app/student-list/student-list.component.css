@@ -1,0 +1,16 @@
+
+
+body{
+    padding: 20px;
+}
+#maindiv
+{
+    padding: 0;
+    margin: auto;
+    background-color: aliceblue;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 2px black;
+    
+}

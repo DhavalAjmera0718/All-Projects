@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container" style="border: 1px solid ;">
+        <h1 class="text-center"> <b> Template Driven form </b></h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <form novalidate #loginFrom="ngForm" (ngSubmit)="onSubmit(loginFrom.value)">
+                    <div class="form-group">
+                        <label for="">EnrollmentNo Number</label>
+                        <input type="text" class="form-control" name="enroll" ngModel
+                            #enroll="ngModel" required>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="enroll.invalid && enroll.touched">
+                        please enter Valid EnrollmentNo
+                    </div>
+<!-- ***************************************************************************************************** -->
+                    <div class="form-group">
+                        <label for="">Name</label>
+                        <input type="text" class="form-control" name="name" #name="ngModel" ngModel
+                            required>
+                    </div>
+                    
+                    <div class="alert alert-danger" *ngIf="name.invalid && name.touched">
+                        please enter Valid Name
+                    </div>
+<!-- ***************************************************************************************************** -->
+                    <div class="form-group">
+                        <label for="">Address</label>
+                        <input type="text" class="form-control" name="address" #address="ngModel" ngModel 
+                            required>
+                    </div>
+                    
+                    <div class="alert alert-danger" *ngIf="address.invalid && address.touched">
+                        please enter Valid Address
+                    </div>
+<!-- ***************************************************************************************************** -->
+                    <div class="form-group">
+                        <label for="">Branch</label>
+                        <input type="text" class="form-control" name="branch" #Branch="ngModel" ngModel
+                            required>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="Branch.invalid && Branch.touched">
+                        please enter Valid Branch
+                    </div>
+<!-- ***************************************************************************************************** -->
+
+                    <div class="form-group">
+                        <label for="">City</label>
+                        <input type="text" class="form-control" name="city" #city="ngModel" ngModel
+                            required>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="city.invalid && city.touched">
+                        please enter Valid City
+                    </div>
+<!-- ***************************************************************************************************** -->
+                    <div class="form-group">
+                        <label for="">Contact</label>
+                        <input type="text" class="form-control" name="contact" #contact="ngModel" ngModel 
+                            required>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="contact.invalid && contact.touched">
+                        please enter Valid Contact
+                    </div>
+<!-- ***************************************************************************************************** -->
+
+                    <div class="form-group">
+                        <label for="">Gender</label>
+                        <!-- <input type="text" class="form-control" name="gender" ngModel [(ngModel)]="students.gender"
+                            required> -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" #gender="ngModel" name="gender" id="gender" value="Male" ngModel>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" #gender="ngModel" name="gender" id="gender" value="Female" ngModel>
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="gender.invalid && gender.touched">
+                        please enter Valid Gender
+                    </div>
+<!-- ***************************************************************************************************** -->
+
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" name="password" #pass="ngModel" ngModel
+                             required>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="pass.invalid && pass.touched">
+                        please enter Valid Password
+                    </div>
+<!-- ***************************************************************************************************** -->
+
+                    <div class="form-group">
+                        <label for="">Pincode</label>
+                        <input type="text" class="form-control" name="pincode" #pincode="ngModel" ngModel 
+                            required>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="pincode.invalid && pincode.touched">
+                        please enter Valid Pincode
+                    </div>
+<!-- ***************************************************************************************************** -->
+
+                    <div class="form-group">
+                        <label for="">Role</label>
+                        <input type="text" class="form-control" name="role" ngModel 
+                            required>
+                    </div>
+<!-- ***************************************************************************************************** -->
+
+                    <div class="form-group">
+                        <label for="">Security Key</label>
+                        <input type="text" class="form-control" name="securityKey" #securityKey="ngModel" ngModel
+                             required>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="securityKey.invalid && securityKey.touched">
+                        please enter Valid securityKey
+                    </div>
+<!--****************************************************************************************************** -->
+                        <div class="form-group" >
+                        Elective Subjects <br>
+                        <input type="checkbox" id="sub"  (change)="getelectiveData($event)"  #check="ngModel" name="elective" value="Java" ngModel required>
+                        <label for="vehicle1"> Java Programming </label><br>
+                        <input type="checkbox" id="sub" (change)="getelectiveData($event)" #check="ngModel" name="elective" value="Python" ngModel required>
+                        <label for="vehicle2"> python </label><br>
+                        <input type="checkbox" id="sub" (change)="getelectiveData($event)" #check="ngModel" name="elective" value="C#" ngModel required>
+                        <label for="vehicle3"> ASP.NET</label><br><br>
+                    </div>
+                    <div class="alert alert-danger" *ngIf="check.invalid && check.touched">
+                        please Select Atleast One Box
+                    </div>
+
+                                        
+                    <div style="text-align: center;">
+                        <button class="btn btn-primary" [disabled]="loginFrom.invalid" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

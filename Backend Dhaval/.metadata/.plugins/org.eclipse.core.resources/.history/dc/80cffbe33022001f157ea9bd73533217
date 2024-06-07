@@ -1,0 +1,51 @@
+package com.UAP.Controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.UAP.Implimantation.ThirdPartyApiImplimantation;
+
+@RestController
+@RequestMapping("/api")
+public class ThirdPartyApiController {
+
+	
+	@Autowired
+	private ThirdPartyApiImplimantation thirdPartyApiService;
+	
+	@GetMapping("/getThirdpartyApiData")
+//	public ResponseEntity<List<Map<String, Object>>> getThirdpartyApiData()
+	public ResponseEntity<Object> getThirdpartyApiData()
+	{
+		return new ResponseEntity<Object>(thirdPartyApiService.getThirdpartyApiData() , HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/getThirdpartyApiDataById/{id}")
+	public ResponseEntity<Map<String, Object>>  getThirdpartyApiDataByid(@PathVariable("id") int id)
+	{
+		return new ResponseEntity<Map<String,Object>>(thirdPartyApiService.getThirdpartyApiDataByid(id) , HttpStatus.ACCEPTED);
+	}
+	
+	@PostMapping("/postDataInThirdPartyApi")
+	public ResponseEntity<Map<String, Object>>  postDataInThirdPartyApi(@RequestBody Map<String, Object> data)
+	{
+		return new ResponseEntity<Map<String,Object>>(thirdPartyApiService.postDataInThirdPartyApi(data) , HttpStatus.ACCEPTED);
+	}
+	
+	@PutMapping("/updateThirdPartyDataByid/{id}")
+	public ResponseEntity<Map<String, Object>>  updateThirdPartyDataByid(@RequestBody Map<String, Object> data ,@PathVariable int id)
+	{
+		return new ResponseEntity<Map<String,Object>>(thirdPartyApiService.updateThirdPartyDataByid(data, id) , HttpStatus.CREATED);
+	}
+}

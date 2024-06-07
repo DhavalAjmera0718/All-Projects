@@ -1,0 +1,15 @@
+.example-spacer {
+  flex: auto;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+a {
+  margin-right: 10px;
+}
+
+#RegisterUser {
+ margin-left: 50px;
+}

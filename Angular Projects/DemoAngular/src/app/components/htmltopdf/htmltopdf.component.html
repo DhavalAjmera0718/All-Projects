@@ -1,0 +1,9 @@
+<form [formGroup]="pdfForm">
+
+    <input type="file" name="file" id="file" formControlName="file" (change)="onFileSelected($event)">
+    <br>
+    <hr>
+    <input type="submit" value="Submit" (click)="onsubmit()">
+
+</form>
+

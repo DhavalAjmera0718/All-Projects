@@ -1,0 +1,29 @@
+package com.UAP.Repository;
+
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.UAP.Entity.RegisterEntity;
+
+@Repository
+public interface RegisterRepo extends JpaRepository<RegisterEntity, Long> {
+
+	@Query(value = "SELECT * FROM register where status='Approved'", nativeQuery = true)
+	List<RegisterEntity> getAllAcceptedData();
+
+	@Query(value = "SELECT * FROM register where status='Reject'", nativeQuery = true)
+	List<RegisterEntity> getAllRejectedData();
+
+	@Query(value = "SELECT * FROM register where status='Pending'", nativeQuery = true)
+	List<RegisterEntity> getAllPendingData();
+	
+//	@Query(value = "SELECT COUNT('status') FROM register where status='Approved'" , nativeQuery = true)
+	@Query("SELECT COUNT(r) FROM RegisterEntity r WHERE r.status = 'Pending'")
+	Long countStatusInRegisterEntity();
+	
+	
+}

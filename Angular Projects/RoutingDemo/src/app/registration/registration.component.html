@@ -1,0 +1,114 @@
+<div class="container" style="border: 1px solid; padding: 20px;">
+    <div class="row">
+      <div class="col-md-12 center1">
+        <div class="center">
+          <div class="text-center">
+            <h3> Template Driven Form</h3>
+          </div>
+          <hr>
+          <form novalidate #formData="ngForm" (ngSubmit)="saveData(formData)">
+            <div class="form-group">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" class="form-control" id="name" #name="ngModel" placeholder="Enter name" name="name"
+                ngModel required>
+            </div>
+   
+            <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+              <div *ngIf="name.errors && name.errors['required']">
+                <strong> Name is required</strong>
+              </div>
+            </div>
+   
+            <div class="form-group">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" class="form-control" id="email" #email="ngModel" placeholder="Enter email" name="email"
+                ngModel required>
+            </div>
+            <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+              <div *ngIf="email.errors && email.errors['required']">
+                <strong> Email is required</strong>
+              </div>
+            </div>
+   
+            <div class="form-group">
+              <label for="mobile" class="form-label">Mobile:</label>
+              <input type="text" class="form-control" id="mobile" #mobile="ngModel" placeholder="Enter Mobile No"
+                name="mobile" ngModel required>
+            </div>
+            <div class="alert alert-danger" *ngIf="mobile.touched && mobile.invalid">
+              <div *ngIf="mobile.errors && mobile.errors['required']">
+                <strong> Mobile Number is required</strong>
+              </div>
+            </div>
+   
+            <div class="form-group">
+              <label for="gender" class="form-label">Gender:</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" #gndr="ngModel" id="gender" name="gender" value="Female" ngModel required>
+                <label class="form-check-label">Female</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" #gndr="ngModel" id="gender" name="gender" value="Male" ngModel required>
+                <label class="form-check-label">Male</label>
+              </div>
+            </div>
+   
+            <div class="alert alert-danger" *ngIf="gndr.touched && gndr.invalid">
+              <div *ngIf="gndr.errors && gndr.errors['required']">
+                <strong> Gender is required</strong>
+              </div>
+            </div>
+   
+   
+            <div class="form-group">
+              <label for="branch" class="form-label">Course:</label>
+              <select class="form-select" id="branch" name="branch" #branch="ngModel" ngModel required>
+                <option value="" selected>Select Branch</option>
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="Any Other">Any Other</option>
+              </select>
+            </div>
+   
+            <div class="alert alert-danger" *ngIf="branch.touched && branch.invalid">
+              <div *ngIf="branch.errors && branch.errors['required']">
+                <strong> Select Branch</strong>
+              </div>
+            </div>
+   
+   
+            <div class="form-group">
+              <label for="subject" class="form-label">Elective Subjects:</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" (change)="getElectiveData($event)" id="subject" name="elective" value="Java Programming"
+                  ngModel>
+                <label class="form-check-label">Java Programming</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" (change)="getElectiveData($event)" id="subject" name="elective" value="Computer Network"
+                  ngModel >
+                <label class="form-check-label">Computer Network</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" (change)="getElectiveData($event)" id="subject" name="elective" value="Cloud Computing"
+                  ngModel >
+                <label class="form-check-label">Cloud Computing</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" (change)="getElectiveData($event)" id="subject" name="elective" value="Information Security"
+                  ngModel>
+                <label class="form-check-label">Information Security</label>
+              </div>
+            </div>
+            <hr>
+            <br>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary" [disabled]="formData.invalid || checkboxData.length==0">Submit</button> &nbsp;
+              <button type="submit" class="btn btn-danger">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+   
+  </div>

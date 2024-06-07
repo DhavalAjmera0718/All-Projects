@@ -1,0 +1,124 @@
+<header class="header">
+    <div class="container">
+      <h1 class="logo">Vini</h1>
+      <ul class="nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </header>
+  <script>
+    $(window).scroll(function(){
+  //Header
+  if($(window).scrollTop()>= 100){
+     $('.header').addClass('fixed-top');
+  }
+  else {
+  	$('.header').removeClass('fixed-top');
+  }
+  //Footer
+    var navpanel = $('.bottom-nav');
+    var panelHeight = navpanel.height() - 4;
+    var footerHeight = $('.footer').height();
+    if( $(document).height() - panelHeight - footerHeight <= $(window).scrollTop() + $(window).height() ) {
+      navpanel.removeClass('fixed-bottom');
+    } 
+  else {
+    navpanel.addClass('fixed-bottom');
+	}
+  
+});
+
+(function($) {
+  $(function() {
+    // Store menu container
+    var mobileMenu = '#mobile-menu';
+    // Store Trigger
+    var mobileBtn = '#mobile-footer-btn';
+
+    var rotation = '.mobile-btn-close';
+
+    $(mobileBtn).on("click", function(e) {
+      e.stopPropagation();
+      if ($(mobileMenu).hasClass('mobile-menu-hide') || $(rotation).hasClass('is-rotating')) {
+        $(mobileMenu).removeClass("mobile-menu-hide").addClass("mobile-menu-show");
+        $(rotation).removeClass("is-rotating").addClass("is-rotating-back");
+      } else {
+        $(mobileMenu).removeClass("mobile-menu-show").addClass("mobile-menu-hide");
+        $(rotation).removeClass('is-rotating-back').addClass('is-rotating');
+      }
+    });
+  });
+})(jQuery);
+
+ 
+
+
+  </script>
+
+
+
+
+  <div class="banner"> Welcome! </div>
+  <div class="container">
+    <h2>What is Lorem Ipsum?</h2>
+    <p><b>Lorem Ipsum </b>is simply dummy text of he printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+  <p>
+  It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+    </p>
+  
+    <h3>Contrary to popular belief</h3> <p> Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+    </p>
+  
+  <h3>The standard chunk </h3>  <p>Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+    </p>
+   <p>
+  There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are a going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
+    </p>
+    <h3>Embarrassing hidden in the middle of text</h3>
+    <p> All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+    </p>
+  
+      <ul>
+      <li>paragraphs</li>
+      <li>words</li>
+      <li>bytes</li>
+      <li>lists</li>
+     <ul>
+   <p>Start with 'Lorem ipsum dolor sit amet...'</p>
+    
+   <nav class="navbar" role="navigation">
+    <img src="https://s3.amazonaws.com/plloyd/codepen/animated-menu-logo.svg" />
+  </nav>
+  
+  <div id="content">
+    <h1>Animated Mobile Footer Menu</h1>
+    <h3>Shrink the browser window to see</h3>
+  </div>
+  
+  <footer id="mobile-footer">
+    <div id="mobile-menu">
+      <div id="mobile-footer-container">
+        <div class="mobile-link">
+          <a href="#" class="text-center">My Account</a>
+        </div>
+        <div class="mobile-link">
+          <a href="#" class="text-center">Reviews</a>
+        </div>
+        <div class="mobile-link">
+          <a href="#" class="text-center">Contact Us</a>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-footer-close">
+      <button id="mobile-footer-btn">
+        <div class="mobile-btn-close is-rotating-back">
+          <span></span>
+        </div>
+      </button>
+    </div>
+  </footer>
+
+    

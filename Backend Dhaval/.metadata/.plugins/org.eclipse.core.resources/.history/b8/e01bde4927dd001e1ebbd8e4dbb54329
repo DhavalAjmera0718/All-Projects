@@ -1,0 +1,114 @@
+package com.User.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.User.DTO.EducationDetails_DTO;
+import com.User.DTO.Student_DTO;
+import com.User.Entity.Student_Entity;
+import com.User.Service.Educational_Service;
+import com.User.Service.StudentServices;
+
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+	@Autowired
+	private StudentServices stServices;
+	
+	@Autowired
+	private Educational_Service edService;
+/******************************************************** registerWithDetails ****************************************************************************************/	
+
+	@PostMapping("/register-user")
+	public ResponseEntity<String> registerWithDetails(@RequestBody Student_DTO sDto)
+	{
+		System.err.println("FROM USER SERVICE REGISTER USER" + sDto);
+		return new ResponseEntity<String>(stServices.registerWithDetails(sDto),HttpStatus.CREATED);
+	}
+/******************************************************** [GET USER ] ****************************************************************************************/	
+	
+	@GetMapping("/getUser/{enRoll}")
+	public ResponseEntity<Student_DTO>   getUser(@PathVariable("enRoll") String enRoll) 
+	{
+		return new ResponseEntity<Student_DTO>(stServices.getUser(enRoll),HttpStatus.ACCEPTED);
+	}
+/******************************************************** updateUserDetails ****************************************************************************************/	
+	@PutMapping("updateUser/{enRoll}")
+	public ResponseEntity<String> updateUserDetails(@PathVariable("enRoll") String enRoll, @RequestBody Student_Entity sEntity) 
+	{
+		System.err.println(sEntity);
+		return new ResponseEntity<String>(stServices.updateUserDetails(enRoll, sEntity),HttpStatus.ACCEPTED);
+	}
+	
+/************************************************************************************************************************************************/
+	@PostMapping("/addEducationDetails")
+	public ResponseEntity<String> addEducationDetails(@RequestBody EducationDetails_DTO eDto) 
+	{
+		return new ResponseEntity<String>(edService.addEducationDetails(eDto) , HttpStatus.OK);
+	}	
+	
+/*************************************************************************************************************************************************/	
+	@PutMapping("/updateEducationDetails/{id}")
+	public ResponseEntity<String> updateEducationDetails(@PathVariable("id") Long id ,@RequestBody EducationDetails_DTO dto) 
+	{
+		return new ResponseEntity<String>(edService.updateEducationDetails(id, dto) , HttpStatus.OK);
+
+	}
+/**************************************************** GET FEES DETAILS *********************************************************************************************/	
+
+//	@GetMapping("/getFeeDetails/{enRoll}")
+//	public  ResponseEntity<List<FeeDetails_DTO>> getFeeDetails(@PathVariable("enRoll") String enRoll)
+//	{
+//		System.err.println("------------->"+enRoll);
+//		return new ResponseEntity<List<FeeDetails_DTO>>(stServices.getFeeDetails(enRoll),HttpStatus.ACCEPTED);
+//	}
+/*********************************************************************************************************************************************/	
+	@GetMapping("/getKey/{enrollmentNo}")
+    public List<Object[]> getSecurityKeyAndEnrollmentNo(@PathVariable String enrollmentNo) {
+        return stServices.getSecurityKeyAndEnrollmentNo(enrollmentNo);
+    }
+    
+  /*************************************************************DELETE BY ID******************************************************************************************/
+    @GetMapping("/delete_user/{id}")
+    public ResponseEntity<String> DeleteUser(@PathVariable("id") String id) 
+    {
+    	System.err.println("ID FROM USER CONTROLLER----------> "+id);
+    	return new ResponseEntity<String>(stServices.DeleteUser(id),HttpStatus.OK);
+    	
+    }
+    
+ /********************************************************** CHECKING API ***********************************************************************************/	
+    
+    @PostMapping("/check-api")
+    public ResponseEntity<Object> checkingApi(@RequestBody Student_Entity student_Entity)
+    {
+    	System.out.println("Data to be saved from SERVICE-USER -------------> " + student_Entity);
+    
+    	Student_Entity st =  new Student_Entity();
+    	st.setName(student_Entity.getName());
+    	return new ResponseEntity<Object>(st , HttpStatus.ACCEPTED);
+    }
+    @GetMapping("/get-api")
+    public ResponseEntity<String> getApi()
+    {
+    	System.out.println("Data to be Get from SERVICE-USER -------------> " );
+    	return new ResponseEntity<String>("Checking Get Api---> " , HttpStatus.ACCEPTED);
+    }    
+    
+    
+    
+    
+}

@@ -1,0 +1,33 @@
+
+<div *ngFor="let a of Languages">
+    <h3>
+        <ul>
+            <li>
+                Languages : {{a}}
+            </li>
+        </ul>
+    </h3>
+
+</div>
+<hr>
+<table>
+    <tr>
+        <th>Sno</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Address</th>
+        <th>Pincode</th>
+    </tr>
+    <tr *ngFor="let b of students; index as i;">
+        <td>{{i+1}}</td>
+        <td>{{b.name}}</td>
+        <td>{{b.age}}</td>
+        <td>{{b.adress}}</td>
+
+        <!-- <td *ngFor="let addr of b.adress">
+            <h4>{{addr}}</h4>
+        </td> -->
+        <td>{{b.pincode}}</td>
+
+    </tr>
+</table>

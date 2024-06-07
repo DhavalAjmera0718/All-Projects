@@ -1,0 +1,15 @@
+<p>pipe-use works!</p>
+<h1> Output in LowerCase : {{name | lowercase}}</h1><hr>
+<h1> Output In Uppercase : {{name | uppercase}}</h1><hr>
+<h1> Output String Tittle Case : {{name | titlecase}}</h1><hr>
+
+<h1>Array 1 : {{array1 | json}}</h1><hr>
+#slice 
+<h1>String Slicing From starting - {{name | slice: 1:5 }}</h1>
+<h1>String Slicing From Ending - {{name | slice: 1-8 }}</h1><hr>
+
+<h1>Currency type : {{money | currency : 'INR'}}</h1>
+
+<h1>{{mydate | date: 'MM/dd/yyyy hh:mm:ss' }}</h1><hr>
+<!-- <h1 style="background-color: antiquewhite;"> Squre of {{number1}} is {{number1 | fact:5}}</h1> -->
+<h1 style="background-color: antiquewhite;"> Factorial of {{number1}} is {{number1 | fact}}</h1>

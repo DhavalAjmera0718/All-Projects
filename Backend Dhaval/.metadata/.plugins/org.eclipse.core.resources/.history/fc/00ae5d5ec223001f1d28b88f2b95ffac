@@ -1,0 +1,73 @@
+package com.UAP.Controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.UAP.Entity.RegisterEntity;
+import com.UAP.Repository.RegisterRepo;
+import com.UAP.Service.RegisterService;
+
+@RestController
+public class RegisterController{
+	
+	
+	@Autowired
+	private RegisterService registerService;
+
+
+
+	
+	@Autowired
+	private RegisterRepo registerRepo;
+
+	
+	@PostMapping("/registerUser")
+	public ResponseEntity<String> SaveUserData(@RequestBody RegisterEntity entity) 
+	{
+
+		
+
+
+		System.err.println("Postman Data ----->" + entity);
+		return new ResponseEntity<String>(registerService.SaveUserData(entity) , HttpStatus.ACCEPTED);
+	}
+	
+
+
+	@GetMapping(value = "getAllAcceptedData")
+	public ResponseEntity<List<RegisterEntity>>getAllAcceptedData(){
+		return new ResponseEntity<List<RegisterEntity>>(registerRepo.getAllAcceptedData(), HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping(value = "getAllRejectedData")
+	public ResponseEntity<List<RegisterEntity>>getAllRejectedData(){
+		return new ResponseEntity<List<RegisterEntity>>(registerRepo.getAllRejectedData(), HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping(value = "getAllPendingData")
+	public ResponseEntity<List<RegisterEntity>>getAllPendingData(){
+		return new ResponseEntity<List<RegisterEntity>>(registerRepo.getAllPendingData(), HttpStatus.ACCEPTED);
+	}
+/*******************************************************[ QUERY PRACTISE]**********************************************************************************/	
+
+	@GetMapping("countStatusInRegisterEntity")
+	public Long countStatusInRegisterEntity() 
+	{
+		
+	}
+	
+
+	
+	
+}

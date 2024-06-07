@@ -1,0 +1,17 @@
+<p>calc works!</p>
+
+<div style="text-align: center; height: 300px; width: 300px; color: white; background-color: rgba(63, 60, 60, 0.589);">
+<label for="fno">Enter First Number ;</label>
+<input type="text" name="fno" id="fno" #firstnumber><br><br>
+<label for=""> Enter Second Number :</label>
+<input type="text" name="sno" id="sno" #secondnumber>
+
+<div style="text-align: center; border: 1px solid black; margin-top:10px ; padding: 10px;">
+    <input type="button"  value="Addition" (click)="calculator(firstnumber.value,secondnumber.value ,'add')">
+    <input type="button"  value="Substraction" (click)="calculator(firstnumber.value,secondnumber.value ,'subs')">
+    <input type="button"  value="Multiplication" (click)="calculator(firstnumber.value,secondnumber.value ,'mul')">
+    <input type="button"  value="Division" (click)="calculator(firstnumber.value,secondnumber.value ,'div')">
+</div>
+
+<h1> Result : {{result}}</h1>
+</div>

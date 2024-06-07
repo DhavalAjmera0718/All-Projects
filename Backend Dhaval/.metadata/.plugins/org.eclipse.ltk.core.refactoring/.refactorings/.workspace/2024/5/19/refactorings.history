@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;O_Auth_2.0&apos; to &apos;O_Auth_2&apos;" description="Rename resource &apos;O_Auth_2.0&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/O_Auth_2.0" name="O_Auth_2" stamp="1714977231328" updateReferences="true"/>
+</session>

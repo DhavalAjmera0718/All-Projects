@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 style="text-align: center; background-color: antiquewhite;">Student list</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Number</th>
+    </tr>
+    <tbody *ngFor="let t of students" (click)="getstudentObject(t)">
+        <td>{{t.id}}</td>
+        <td>{{t.name}}</td>
+        <td>{{t.city}}</td>
+        <td>{{t.number}}</td>
+    </tbody>
+</table>
+
+<button class="btn btn-primary" routerLink="medicalinfo"> Medical Info</button>
+<button class="btn btn-primary" routerLink="educationinfo"> Education Info</button>
+<router-outlet></router-outlet>
+      
+  
+</body>
+</html>
+        <!-- <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of students" (click)="getstudentObject(s)">
+        <th scope="row">{{s.id}}</th>
+        <td>{{s.name}}</td>
+        <td>{{s.id}}</td>
+      </tr>
+    </tbody>
+  </table> -->

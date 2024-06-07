@@ -1,0 +1,58 @@
+<p>if-else works!</p>
+<h1 style="text-align: center;"> Structural Directives </h1>
+<hr>
+<link  href="https://youtu.be/G0S6S9Sks70?si=QIR2ISiL3-NSlylv" rel="stylesheet">Ironman-4
+<a href="https://youtu.be/G0S6S9Sks70?si=QIR2ISiL3-NSlylv" target="_blank">Link to YouTube video</a>
+
+ 
+
+<!-- <h2 *ngIf="flag ; else elsepart">
+    <i>Hello condition is  True </i>
+</h2> -->
+
+<h2 *ngIf="flag ; then ifpart; else elsepart ">
+</h2>
+<ng-template #ifpart>
+    <h2>
+        <i>Hello this is New True Condition</i>
+    </h2>
+</ng-template>
+<ng-template #elsepart>
+    <h2>
+        <i> Hello this is False Condition</i>
+    </h2>
+</ng-template>
+
+
+<label for="movie">Enter Movie Name : </label>
+<input type="text" name="moviename" id="movie" [(ngModel)]="moviename">
+
+<div *ngIf="moviename!='' ">
+    <div [ngSwitch]="moviename">
+       
+        <div *ngSwitchCase="'Dhoni'">
+            <h1><i>
+                    <a rel="stylesheet" href="https://youtu.be/6L6XqWoS8tw?si=XHjIS_GDd7C4yyzY">M.S.Dhoni - The
+                    Untold Story</a>
+                </i></h1>
+        </div>
+        <div *ngSwitchCase="'Ironman'">
+            <h1><i>
+                    <a rel="stylesheet" href="https://youtu.be/G0S6S9Sks70?si=QIR2ISiL3-NSlylv" >Ironman-4
+                    </a>
+                </i>
+            </h1>
+        </div>
+        <div *ngSwitchCase="'Thor'">
+            <h1><i>
+                    <a rel="stylesheet" href="https://youtu.be/Go8nTmfrQd8?si=oMy0Iyprjr54HotE">Marvel Studios' Thor:
+                    Love and Thunder</a>
+                </i></h1>
+        </div>
+        <div *ngSwitchDefault>
+            <h1><i>Please Enter Correct Movie Name</i></h1>
+        </div>
+
+    </div>
+
+</div>

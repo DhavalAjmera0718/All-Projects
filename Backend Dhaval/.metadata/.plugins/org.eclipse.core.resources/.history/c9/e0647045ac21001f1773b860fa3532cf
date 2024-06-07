@@ -1,0 +1,130 @@
+package com.UAP.Controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.UAP.DTO.CommonResponse;
+import com.UAP.Helper.EnterPriceDetailHelper;
+import com.UAP.Helper.HtmlToPdf_Helper;
+import com.UAP.Implimantation.SendUAPCertyInMail_Impli;
+import com.UAP.Req_X_Response.MailRequest;
+import com.UAP.Req_X_Response.MailResponse;
+
+import freemarker.template.TemplateException;
+
+
+
+@RestController
+public class HtmlToPdfController {
+
+	
+	@Autowired
+	private SendUAPCertyInMail_Impli service;
+	
+	@Autowired
+	private EnterPriceDetailHelper enterPriceDetailHelper;
+	
+	
+/*******************************************************[ ANY HTML FILE DATA WILL BE OVERRIDE INTO PDF ]***********************************************************************************/	
+	
+	@PostMapping("/htmlToPdf")
+//	public ResponseEntity<?> pdfConverter(@RequestBody String html) {
+	public ResponseEntity<?> pdfConverter(@RequestParam("file") MultipartFile html) {
+
+		
+	try {
+		System.err.println("22222");
+	        File pdfDocumentPath = new File(CommonResponse.PDF_FILE_PATH);
+	        System.err.println("PDF DOC PATH -------->| " + pdfDocumentPath);
+	        HtmlToPdf_Helper.generateHtmlToPdf(html, pdfDocumentPath);
+	        byte[] pdfBytes = Files.readAllBytes(pdfDocumentPath.toPath());
+
+     
+	        System.err.println("bytes"+pdfBytes);
+	        if (pdfBytes != null) {
+                FileSystemResource file = new FileSystemResource(pdfDocumentPath);
+                HttpHeaders headers = new HttpHeaders();
+                headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=generated_pdf.pdf");
+
+                return ResponseEntity.ok()
+                        .headers(headers)
+                        .contentType(MediaType.APPLICATION_PDF)
+                        .body(file);
+            } else {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to generate PDF");
+            }
+	    } catch (IOException e) {
+//	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to convert HTML to PDF");
+	    	e.printStackTrace();
+	    	return null;
+	    }
+	}
+/****************************************[ {2} After Converting HTML to PDF mail certificate to user]
+ * @throws TemplateException 
+ * @throws IOException **********************************************************************************/	
+	
+	@PostMapping("/sendingEmail")
+	public /*MailResponse*/ String sendEmail(@RequestBody MailRequest request) throws  TemplateException {
+		System.err.println("***********|> " + request);
+		Map<String, Object> model = new HashMap<>();
+		model.put("Name", request.getName());
+//		model.put("Name", "Dhaval Ajmera");
+		model.put("location", "Ahmedabad");
+		return service.sendEmail(request, model);
+//		return service.sendEmail(request);
+
+	}
+	
+/*****************************************[ {1} CONVERT ANY USER DATA FROM DATABASE INTO PDF IN LOCAL STORAGE ]**************************************************************************/
+	  
+	@GetMapping("/add-data-in-pdf/{id}")
+	 public ResponseEntity<byte[]> generatePdf1(@PathVariable("id") Long id) {
+	        try {
+	            byte[] pdfBytes = service.generatePdf(id);
+
+	            HttpHeaders headers = new HttpHeaders();
+	            headers.setContentType(MediaType.APPLICATION_PDF);
+	            headers.setContentDispositionFormData("attachment", "converter.pdf");
+
+	            return ResponseEntity.ok()
+	                    .headers(headers)
+	                    .body(pdfBytes);
+	            
+	        } catch (IOException e) {
+	            System.err.println("Exception occurred: " + e.getMessage());
+	            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+	        }
+	    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

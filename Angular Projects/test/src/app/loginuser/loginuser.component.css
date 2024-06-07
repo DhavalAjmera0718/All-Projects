@@ -1,0 +1,208 @@
+*{
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    font-family:arial;
+  }
+  body{background:#ecf0f1; font-family:arial; margin:0; color:#888}
+  .banner{
+    background:#00DAFC;
+    line-height:400px;
+    text-align:center;
+    color:#fff;
+    font-size:60px;
+    height:400px;
+    width: 100%;
+  }
+  
+  
+  
+  .header{
+      height:60px;
+    background:#00DAFC;
+    color:#fff;
+    width:100%;
+  }
+  .logo{
+    margin:0;
+    line-height:50px;
+    float:left;
+  }
+  .nav{
+    list-style:none;
+    float:left;
+  }
+  .nav li{display:inline-block;}
+  .nav li a{
+      display:inline-block;
+     padding:3px 15px;
+    color:inherit;
+    text-decoration:none;
+  }
+  
+  .container{
+    max-width:1200px;
+    padding:0 15px;
+    width:100%;
+  }
+  .container:after {
+      clear: both;
+      content: "";
+      display: table;
+  }
+  .footer{background:#0A95AA; color:#fff; height:100px}
+  .copy{
+    font-size:10px;
+    text-align:center
+  }
+  .bottom-nav{
+    text-align:center;
+    background:#02BDD6;
+    width:100%;
+    color:#fff;
+    height:35px
+  }
+  .bottom-nav .nav{float:none; margin:0}
+  .bottom-nav .nav a{ padding: 0 25px; line-height:35px}
+  .fixed-top, .fixed-bottom{
+    background:#02BDD6;
+    position:fixed;
+    top:0;
+  }
+  .fixed-bottom{
+      top:auto;
+    bottom:0;
+  }
+
+
+   Base Style
+  .navbar {
+      position: fixed;
+      img {
+          margin: 1em 0 0 1em;
+          width: 200px;
+      }
+  }
+  #content {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: url("https://s3.amazonaws.com/plloyd/codepen/eidfjord.jpg") no-repeat center center;
+      background-size: cover;
+      h1, h3 {
+        margin: .5em 0;
+        color: #fff;
+        text-align: center;
+      }
+  }
+ 
+  #mobile-footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      @media(min-width: 768px) {
+          display: none;
+      }
+  }
+  #mobile-menu {
+      background: hsla(213, 48%, 69%,.8);
+  }
+  #mobile-footer-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      overflow: hidden;
+  }
+  .mobile-link {
+      padding-top: 0.75em;
+      padding-bottom: 0.75em;
+  }
+  .mobile-link a {
+      font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+  }
+  #mobile-footer-close {
+      position: relative;
+  }
+  #mobile-footer-btn {
+      position: absolute;
+      bottom: 25px;
+      right: 5px;
+      width: 30px;
+      height: 30px;
+      background-color: #959192;
+      border: none;
+      border-radius: 50%;
+      overflow: hidden;
+      text-indent: 100%;
+      color: transparent;
+      white-space: nowrap;
+      cursor: pointer;
+      &:focus {
+          outline: 0;
+      }
+  }
+  .mobile-btn-close span,
+  .mobile-btn-close span::before {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 18px;
+      top: calc(50% - 9px);
+      right: calc(50% + -2.5px);
+      background-color: #fff;
+      transform: rotate(-90deg);
+      transition: 0.3s ease-out;
+  }
+  .mobile-btn-close {
+      transition: 1s ease-out;
+      &::focus {
+          transition: 1s ease-out;
+      }
+  }
+  .mobile-btn-close {
+      span {
+          transform: rotate(45deg);
+          &::before {
+              content: '';
+              transform: rotate(-90deg);
+          }
+      }
+  }
+  .is-rotating {
+      transform: rotate(135deg);
+  }
+  .is-rotating-back {
+      transform: rotate(-90deg);
+  }
+  .mobile-menu-hide {
+      animation: hideFooter 10s forwards;
+  }
+  .mobile-menu-show {
+      animation: showFooter 1s forwards;
+  }
+  @keyframes hideFooter {
+      0% {
+          transform: translateY(0);
+          opacity: 1;
+      }
+      100% {
+          transform: translateY(1000px);
+          opacity: 0;
+      }
+  }
+  @keyframes showFooter {
+      0% {
+          transform: translateY(300px);
+          opacity: 0;
+      }
+      100% {
+          transform: translateY(0);
+          opacity: 1;
+      }
+  }
+  

@@ -1,0 +1,28 @@
+<!-- <div style="height: 300px; width: 300px; background-color: rgba(58, 47, 47, 0.486); color: white;"  >
+<h1>{{title}}</h1>
+<input type="number" name="num2" [(ngModel)]="num2">
+<br><br>
+<input type="number" name="num1" [(ngModel)]="num1"><hr>
+<button  (click)="add()">Add</button>
+<button (click)="sub()" >Sub</button>
+<button (click)="mul()">Mul</button>
+<button (click)="div()">Div</button>
+<br><br>
+<h3>Result -:{{num3}}</h3>
+</div> -->
+
+
+
+<input type="text" name="data" #data (keyup)="getdata(data.value)">
+<input type="text" name="data" #data1 placeholder="DATA 2">
+<h1>Output : {{output}}</h1>
+<h1 >Output2 : {{getdata(output)}}</h1>
+
+<hr>
+<label for="">Enter User Name : </label>
+<input type="text" name="username"  placeholder="username" [(ngModel)]="username">
+
+
+<hr>
+<h1>Username is : {{username}}</h1>
+

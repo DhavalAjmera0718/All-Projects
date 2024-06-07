@@ -1,0 +1,125 @@
+package com.UAP.Implimantation;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Map;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.UAP.DTO.CommonResponse;
+import com.UAP.HTMLTemplate.TemplateOfCertificate;
+import com.UAP.Helper.EnterPriceDetailHelper;
+import com.UAP.Req_X_Response.MailRequest;
+import com.UAP.Req_X_Response.MailResponse;
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
+
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+@Component
+public class SendUAPCertyInMail_Impli {
+
+	
+	@Autowired
+	private JavaMailSender sender;
+	
+	@Autowired
+	private Configuration config;
+	
+	@Autowired
+	private EnterPriceDetailHelper enterPriceDetailHelper;
+	
+	public MailResponse sendEmail(MailRequest request, Map<String, Object> model) {
+		MailResponse response = new MailResponse();
+		MimeMessage message = sender.createMimeMessage();
+		System.err.println("11111");
+		try {
+			// set mediaType
+			MimeMessageHelper helper = new MimeMessageHelper(message,
+					MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED/*
+																	 * , StandardCharsets.UTF_8.name()
+																	 */);
+			System.err.println("2222");
+			// add attachment
+			helper.addAttachment("converter.pdf"+ "", new ClassPathResource("/templates/converter.pdf"));
+			System.err.println("3333");
+			Template t = config.getTemplate("email-template.ftl");
+			String html = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
+			System.err.println("44444");
+			helper.setTo(request.getTo());
+			helper.setText(html, true);
+//			helper.setSubject(request.getSubject());
+			helper.setSubject("UDHYAM CERTIFICATE");
+//			helper.setFrom(request.getFrom());
+			helper.setFrom("dhaval.ajmera123456@gmail.com");
+			System.err.println("44444");
+			sender.send(message);
+			System.err.println("5555");
+			System.err.println("Message After send" + message);
+
+			response.setMessage("mail send to : " + request.getTo());
+			response.setStatus(Boolean.TRUE);
+			System.err.println("11111");
+		} catch (MessagingException | IOException | TemplateException e) {
+			response.setMessage("Mail Sending failure : "+e.getMessage());
+			response.setStatus(Boolean.FALSE);
+		}
+		System.err.println("RESPONSE----->|" + response);
+		return response;
+//		return "Email Has Been Sent";
+	}
+/*******************************************************************************************************************************************/
+	public byte[] generatePdf(Long id) throws IOException {
+	    // Generate PDF from HTML
+	    try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+	        
+	    Map<String, String> enterPriceData = enterPriceDetailHelper.getEnterPriceData(id);
+	    System.err.println("----> enterPriceData <------" + enterPriceData);
+	    	
+	    	String htmlContent = TemplateOfCertificate.HTML_TEMPLATE_OF_UAP_CERTIFICATE1;
+	    
+	    	for(Map.Entry<String, String> entry :  enterPriceData.entrySet())
+	    	{
+	    		htmlContent = htmlContent.replace("{{" + entry.getKey()+"}}", entry.getValue());
+	    	}
+	        
+	        Document document = Jsoup.parse(htmlContent);
+	        PdfRendererBuilder builder = new PdfRendererBuilder();
+	        builder.withHtmlContent(document.outerHtml(), "");
+	        builder.toStream(outputStream);
+	        builder.run();
+
+	        // Write PDF bytes to file path
+	        Path filePath = Paths.get(CommonResponse.PDF_FILE_PATH);
+	        Files.write(filePath, outputStream.toByteArray());
+
+	        // Return the PDF file path in the response
+	        String message = "PDF SAVE TO " + CommonResponse.PDF_FILE_PATH;
+	        byte[] messageInBytes = message.getBytes(StandardCharsets.UTF_8);
+	        return messageInBytes;
+
+	    } catch (Exception e) {
+	    	System.err.println("CATCH FROM SEND UAP IMPLIMENTATION ");
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+}

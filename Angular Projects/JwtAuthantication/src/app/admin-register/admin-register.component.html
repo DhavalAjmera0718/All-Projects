@@ -1,0 +1,49 @@
+
+    <h1 style="text-align: center;"> Admin Details</h1>
+    <hr>
+    <div style="border: 1px solid; padding: 20px; text-align: center; box-shadow: 1px 0px 10px 1px rgb(0, 0, 0) ;">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>password</th>
+                    <th>name</th>
+                    <th>Gender</th>
+                    <th>Contact</th>
+                    <th>address</th>
+                    <th>City</th>
+                    <th>pincode</th>
+                    <th>Security Key</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let admin of adminalldata">
+                    <td> {{ admin.id}}</td>
+                    <td> {{ admin.password}}</td>
+                    <td> {{ admin.name}}</td>
+                    <td> {{ admin.gender}}</td>
+                    <td> {{ admin.contact}}</td>
+                    <td> {{ admin.address}}</td>
+                    <td> {{ admin.city}}</td>
+                    <td> {{ admin.pinCode}}</td>
+                    <td> {{ admin.securityKey}}</td>
+                    <td>
+                        <div>
+                        <button class="btn btn-dark" routerLink="/add">Register Admin</button>
+                        <button class="btn btn-primary"  style="margin-left: 2px;">View</button>
+                        <button class="btn btn-danger"  style="margin-left: 2px;">Delete</button>
+                        <button class="btn btn-success"  style="margin-left: 2px;">Update</button>
+                        <!-- <button class="btn btn-success" routerLink="/builder" style="margin-left: 2px;">Form Builder</button> -->
+                    </div>   
+                    </td>
+
+
+                </tr>
+                <!-- <button class="btn btn-dark" (click)="getAdminData()">View</button> -->
+
+            </tbody>
+
+        </table>
+    </div>

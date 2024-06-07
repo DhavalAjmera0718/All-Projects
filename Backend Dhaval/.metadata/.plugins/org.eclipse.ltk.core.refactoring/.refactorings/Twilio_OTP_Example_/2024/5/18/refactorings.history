@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;com.OTP_Example.DTO.PasswordResetDto.java&apos; to &apos;PasswordResetRequestDto.java&apos;&#x0D;&#x0A;- Original project: &apos;Twilio_OTP_Example_&apos;&#x0D;&#x0A;- Original element: &apos;com.OTP_Example.DTO.PasswordResetDto.java&apos;&#x0D;&#x0A;- Renamed element: &apos;com.OTP_Example.DTO.PasswordResetRequestDto.java&apos;" description="Rename compilation unit &apos;PasswordResetDto.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.OTP_Example.DTO{PasswordResetDto.java" name="PasswordResetRequestDto.java" references="false" stamp="1714653863418" version="1.0"/>
+</session>

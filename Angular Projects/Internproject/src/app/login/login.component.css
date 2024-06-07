@@ -1,0 +1,51 @@
+/* .crousel
+{
+ background-color: red;
+ height: ;
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://images.unsplash.com/photo-1472289065668-ce650ac443d2?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Set full height of viewport */
+}
+.logindiv {
+      position: absolute;
+      margin-top: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(58, 55, 55, 0.705);
+    width: 600px;
+    border: 15px solid rgb(0, 0, 0);
+    box-shadow: 0 0 50px 15px #eff0f0;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.logindiv label {
+    color: #fff;
+}
+
+.logindiv .btn {
+    width: 45%; /* Adjust button width */
+    margin: 10px; /* Add margin between buttons */
+}
+.logindiv .btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+.logindiv .btn-primary:hover {
+    background-color: #0056b3;
+}
+.logindiv .btn-success {
+    background-color: #28a745;
+    border: none;
+}
+.logindiv .btn-success:hover {
+    background-color: #218838;
+}

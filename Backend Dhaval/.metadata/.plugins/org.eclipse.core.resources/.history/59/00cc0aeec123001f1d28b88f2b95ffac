@@ -1,0 +1,37 @@
+package com.UAP.Implimantation;
+
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.UAP.DTO.CommonResponse;
+import com.UAP.Entity.RegisterEntity;
+import com.UAP.Repository.RegisterRepo;
+import com.UAP.Service.RegisterService;
+
+
+@Component
+public class RegisterImplimantation  implements RegisterService{
+
+	
+	
+	@Autowired
+	private RegisterRepo registerRepo;
+	
+	@Override
+	public String SaveUserData(RegisterEntity entity) 
+	{
+		entity.setStatus("pending");
+		registerRepo.save(entity);
+		return CommonResponse.SAVE_REGISTER_DATA;
+	}
+	
+	
+	public String countStatusInRegisterEntity() 
+	{
+		
+	}
+	
+	
+}

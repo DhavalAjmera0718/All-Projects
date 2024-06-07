@@ -1,0 +1,33 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8085/eureka/eureka/
+server:
+  port: 8095
+spring:
+  application:
+    name: SERVICE-API-GATE-WAY
+  cloud:
+   gateway:
+    routes:
+    - id: SERVICE-ADMIN
+      uri: lb://SERVICE-ADMIN
+      predicates:
+       - Path=/admin/**  
+
+
+    - id: SERVICE-USER
+      uri: lb://SERVICE-USER
+      predicates:
+       - Path=/user/**  
+    - id: SERVICE-AUTHENTICATION
+      uri: lb://SERVICE-AUTHENTICATION
+      predicates:
+       - Path=/auth/**  
+    - id: SERVICE-TEACHER
+      uri: lb://SERVICE-TEACHER
+      predicates:
+       - Path=/teach/**  
+       

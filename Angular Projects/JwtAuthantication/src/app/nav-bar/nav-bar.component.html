@@ -1,0 +1,14 @@
+
+    <mat-toolbar color="primary">
+       
+        <span><img src="https://www.oplinnovate.com/assets/images/banner_shape.svg" routerLink="/home" width="100" height="50"></span>
+        <div id="RegisterUser">
+        <a style="color: aliceblue;" routerLink="userRegister"  *ngIf="loggedin" >Register User</a>
+        <a style="color: aliceblue;" routerLink="admin"  *ngIf="loggedin" >Admin</a>
+    </div>
+        <span class="example-spacer"></span>
+       
+        <a style="color: aliceblue;" routerLink="login"  *ngIf="!loggedin" >Login</a>
+        <a style="color: aliceblue;" *ngIf="loggedin"  mat-raised-button color="accent">User</a>
+        <a style="color: aliceblue;" mat-raised-button color="accent" (click)="LogoutUser()" *ngIf="loggedin">LogOut</a>
+    </mat-toolbar>

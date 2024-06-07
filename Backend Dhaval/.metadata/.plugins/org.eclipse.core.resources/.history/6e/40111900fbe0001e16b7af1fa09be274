@@ -1,0 +1,27 @@
+package com.Teacher.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.Teacher.Entity.Teacher_Entity;
+import com.Teacher.Implimantation.Teacher_Implimantation;
+
+@RestController
+public class Teacher_Controller {
+
+	
+	@Autowired
+	private Teacher_Implimantation service;
+	
+	@PostMapping("/register_teacher")
+	public ResponseEntity<String> Register_Teacher(@RequestBody Teacher_Entity tEntity) 
+	{
+		return new ResponseEntity<String>(service.Register_Teacher(tEntity),HttpStatus.CREATED);
+	}
+/*************************************************[ ADD MARKS OF STUDENTS ]***************************************************************************************************/	
+			
+}

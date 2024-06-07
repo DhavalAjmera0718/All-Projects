@@ -1,0 +1,103 @@
+package com.UAP.Implimantation;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import lombok.val;
+
+@Component
+public class ThirdPartyApiImplimantation {
+	
+	
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	public static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+	
+	public static final String POST_URL = "posts";
+	
+	public static final String POST_URL_BY_ID = "posts/";
+	
+	public static final String COVID_DATA= "https://data.covid19india.org/v4/min/data.min.json"; 
+	
+//	public List<Map<String, Object>>  getThirdpartyApiData()
+	public Object  getThirdpartyApiData()
+	{
+		
+		HttpEntity <Void> HttpEntity =  new HttpEntity<>(getHttpHeaders());
+		String finalurl = BASE_URL+POST_URL;
+		System.err.println("finalurl----->" + finalurl);
+		
+		 val response = restTemplate.exchange(COVID_DATA, HttpMethod.GET, HttpEntity, List.class);
+		 
+		 System.err.println("RESPONSE FROM THIRDPARTY IMPLI------>| " + response);
+		 
+		 return response.getBody();
+	}
+/**********************************************************************[GET THIRD PARTY DATA BY ID ]**********************************************************************/	
+	
+	public Map<String, Object>  getThirdpartyApiDataByid(int id)
+	{
+		
+		HttpEntity <Void> HttpEntity =  new HttpEntity<>(getHttpHeaders());
+		String finalurl = BASE_URL+POST_URL_BY_ID+id;
+		System.err.println("finalurl----->" + finalurl);
+		
+		 val response = restTemplate.exchange(finalurl, HttpMethod.GET, HttpEntity, Map.class);
+		 
+		 System.err.println("RESPONSE FROM THIRDPARTY IMPLI GET BY ID------>| " + response);
+		 
+		 return response.getBody();
+	}
+		
+/*****************************************************************[POST DATA USING THIRD PARTY API ]***************************************************************************/	
+	public Map<String, Object>  postDataInThirdPartyApi(Map<String, Object> data)
+	{
+		
+		HttpEntity <Map> HttpEntity =  new HttpEntity<>(data , getHttpHeaders());
+		String finalurl = BASE_URL+POST_URL;
+		System.err.println("finalurl----->" + finalurl);
+		
+		 val response = restTemplate.exchange(finalurl, HttpMethod.POST, HttpEntity, Map.class);
+		 
+		 System.err.println("RESPONSE FROM THIRDPARTY IMPLI GET BY ID------>| " + response);
+		 
+		 return response.getBody();
+	}
+	
+/****************************************************************[UPDATE DATA BY ID USING THIRD PARTY API]****************************************************************************/	
+	public Map<String, Object>  updateThirdPartyDataByid(Map<String, Object> data , int id)
+	{
+		
+		HttpEntity <Map> HttpEntity =  new HttpEntity<>(data , getHttpHeaders());
+		String finalurl = BASE_URL+POST_URL_BY_ID+id;
+		System.err.println("finalurl----->" + finalurl);
+		
+		 val response = restTemplate.exchange(finalurl, HttpMethod.PUT, HttpEntity, Map.class);
+		 
+		 System.err.println("RESPONSE FROM THIRDPARTY IMPLI GET BY ID------>| " + response);
+		 
+		 return response.getBody();
+	}
+	
+	
+/********************************************************************************************************************************************/	
+	private HttpHeaders getHttpHeaders() 
+	{
+		HttpHeaders httpHeaders =  new HttpHeaders();
+		httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		return httpHeaders;
+	}
+
+}

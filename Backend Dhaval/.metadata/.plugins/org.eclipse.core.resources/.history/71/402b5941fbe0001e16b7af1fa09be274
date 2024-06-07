@@ -1,0 +1,36 @@
+package com.Teacher.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.Teacher.Entity.Teacher_Entity;
+import com.Teacher.Implimantation.Teacher_Implimantation;
+
+@RestController
+public class Teacher_Controller {
+
+	
+	@Autowired
+	private Teacher_Implimantation service;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@PostMapping("/register_teacher")
+	public ResponseEntity<String> Register_Teacher(@RequestBody Teacher_Entity tEntity) 
+	{
+		return new ResponseEntity<String>(service.Register_Teacher(tEntity),HttpStatus.CREATED);
+	}
+/*************************************************[ ADD MARKS OF STUDENTS ]***************************************************************************************************/	
+	@PostMapping("/add_marks")
+	public ResponseEntity<Object> Add_Marks(@RequestBody Object object)
+	{
+		Object postForObject = restTemplate.postForObject("http://localhost:8092/user/marks/add_marks", object, Object.class);
+		return new ResponseEntity<String>(service.Add_Marks(mEntity),HttpStatus.CREATED);
+	}		
+}

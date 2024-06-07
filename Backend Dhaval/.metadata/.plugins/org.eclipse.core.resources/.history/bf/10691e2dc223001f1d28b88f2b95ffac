@@ -1,0 +1,15 @@
+package com.UAP.Service;
+
+import org.springframework.stereotype.Service;
+
+import com.UAP.Entity.RegisterEntity;
+
+@Service
+public interface RegisterService {
+
+	
+	public String SaveUserData(RegisterEntity entity) ;
+	
+	public Long countStatusInRegisterEntity() 
+	
+}

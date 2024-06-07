@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <h1 class="text-center"><b>Student List</b></h1>
+    <div class="text-center" id="maindiv" >
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>enrollmentNo</th>
+                    <th>name</th>
+                    <th>address</th>
+                    <th>branch</th>
+                    <th>city</th>
+                    <th>contact</th>
+                    <th>gender</th>
+                    <th>password</th>
+                    <th>pinCode</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Student of StudentInformationSystems">
+                    <td> {{ Student.enrollmentNo}}</td>
+                    <td> {{ Student.name}}</td>
+                    <td> {{ Student.address}}</td>
+                    <td> {{ Student.branch}}</td>
+                    <td> {{ Student.city}}</td>
+                    <td> {{ Student.contact}}</td>
+                    <td> {{ Student.gender}}</td>
+                    <td> {{ Student.password}}</td>
+                    <td> {{ Student.pinCode}}</td>
+                    <td> {{ Student.role}}</td>
+        
+                    <td>
+        
+                        <button (click)="updateEmployee(Student.name)" class="btn btn-info" style="margin-left: 2px;">
+                            Update
+                        </button> 
+                        <button (click)="DeleteById(Student.name)" class="btn btn-danger" style="margin-left: 2px;">
+                            Delete
+                        </button>
+                        <button (click)="ViewDetails(Student.name)" class="btn btn-primary" style="margin-left: 2px;">
+                            View
+                        </button>
+                    </td>
+        
+        
+                </tr>
+        
+            </tbody>
+        
+        </table>
+        </div>
+</body>
+</html>
